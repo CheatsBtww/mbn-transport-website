@@ -86,7 +86,6 @@ export default function StatisticsSection() {
                 </div>
                 <div className="text-3xl font-bold text-primary-700 mb-2">
                   {stat.number}
-                  {stat.unit && <span className="text-lg">{stat.unit}</span>}
                 </div>
                 <p className="text-gray-600 font-medium">{stat.label}</p>
               </div>
