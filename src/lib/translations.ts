@@ -89,8 +89,8 @@ export const translations = {
     activitePrincipale: "Transport routier de marchandises, déménagement, convoyage de véhicules dans toute l'Europe",
     
     // Contact Info
-    telephone: "01 XX XX XX XX",
-    email: "contact@mbntransport.fr",
+    telephoneNumber: "01 49 60 56 50",
+    emailAddress: "contact@mbntransport.fr",
     
     // Language
     language: "Langue",
@@ -188,8 +188,8 @@ export const translations = {
     activitePrincipale: "Road freight transport, moving, vehicle convoying throughout Europe",
     
     // Contact Info
-    telephone: "01 XX XX XX XX",
-    email: "contact@mbntransport.fr",
+    telephoneNumber: "01 49 60 56 50",
+    emailAddress: "contact@mbntransport.fr",
     
     // Language
     language: "Language",
