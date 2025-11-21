@@ -21,7 +21,7 @@
 - Sous-titre : "IVRY-SUR-SEINE"
 
 ### Informations de Contact
-- **Email** : `contact@mbntransport.fr` (au lieu de contact@globeexpress.fr)
+- **Email** : `ismail.iy.pro@gmail.com.fr` (au lieu de contact@globeexpress.fr)
 - **Adresse** : 12 Avenue Maurice Thorez, 94200 Ivry-sur-Seine
 - **RCS** : 912 186 434 R.C.S. Créteil
 - **Capital social** : 23 000 €

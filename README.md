@@ -188,7 +188,7 @@ export const translations = {
 
 **MBN TRANSPORT**
 - **Téléphone** : 01 XX XX XX XX
-- **Email** : contact@mbntransport.fr
+- **Email** : ismail.iy.pro@gmail.com.fr
 - **Adresse** : 12 Avenue Maurice Thorez, 94200 Ivry-sur-Seine
 - **Horaires** : Lundi - Vendredi, 08h00 - 19h00
 

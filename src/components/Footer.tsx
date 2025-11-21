@@ -83,7 +83,7 @@ export default function Footer() {
             
             <div className="text-xs text-gray-500 mb-4">
               * {t('champsObligatoires')}<br />
-              La collecte des informations demandées est nécessaire au traitement de votre demande. Dans le cadre de la gestion de nos prospects et clients, nous conservons les données personnelles qui y sont relatives pour un maximum de 1 an après le dernier contact. Conformément aux dispositions légales en vigueur, vous disposez d'un droit d'accès, de rectification, de portabilité, de limitation, d'opposition et de suppression des données qui vous concernent. Pour les exercer, envoyez votre demande par e-mail à l'adresse suivante: contact@mbntransport.fr
+              La collecte des informations demandées est nécessaire au traitement de votre demande. Dans le cadre de la gestion de nos prospects et clients, nous conservons les données personnelles qui y sont relatives pour un maximum de 1 an après le dernier contact. Conformément aux dispositions légales en vigueur, vous disposez d'un droit d'accès, de rectification, de portabilité, de limitation, d'opposition et de suppression des données qui vous concernent. Pour les exercer, envoyez votre demande par e-mail à l'adresse suivante: ismail.iy.pro@gmail.com.fr
             </div>
             
             <button

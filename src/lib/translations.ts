@@ -90,7 +90,7 @@ export const translations = {
     
     // Contact Info
     telephoneNumber: "01 49 60 56 50",
-    emailAddress: "contact@mbntransport.fr",
+    emailAddress: "ismail.iy.pro@gmail.com.fr",
     
     // Language
     language: "Langue",
@@ -189,7 +189,7 @@ export const translations = {
     
     // Contact Info
     telephoneNumber: "01 49 60 56 50",
-    emailAddress: "contact@mbntransport.fr",
+    emailAddress: "ismail.iy.pro@gmail.com.fr",
     
     // Language
     language: "Language",
