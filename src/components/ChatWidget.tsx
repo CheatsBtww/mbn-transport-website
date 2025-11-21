@@ -12,7 +12,7 @@ export default function ChatWidget() {
   };
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:ismail.iy.pro@gmail.com.fr';
+    window.location.href = 'mailto:ismail.iy.pro@gmail.com';
   };
 
   return (
@@ -86,7 +86,7 @@ export default function ChatWidget() {
                 </div>
                 <div>
                   <div className="font-medium">Envoyer un email</div>
-                  <div className="text-xs text-gray-500">ismail.iy.pro@gmail.com.fr</div>
+                  <div className="text-xs text-gray-500">ismail.iy.pro@gmail.com</div>
                 </div>
               </button>
             </div>

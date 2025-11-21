@@ -7,7 +7,7 @@ Site web officiel de MBN TRANSPORT, société spécialisée dans le transport ro
 - **Design responsive** - Optimisé pour tous les appareils
 - **Navigation moderne** - Menu hamburger pour mobile
 - **Pages dynamiques** - Services et secteurs d'activité
-- **Formulaire de contact** - Avec validation complète
+- **Formulaire de contact** - Avec validation complète et envoi d'emails via Resend
 - **Widget de chat** - Interface interactive
 - **Animations fluides** - Effets hover et transitions
 - **SEO optimisé** - Métadonnées complètes
@@ -45,6 +45,7 @@ src/
 - **Zod** - Validation de schémas
 - **Lucide React** - Icônes
 - **Context API** - Gestion d'état multilingue
+- **Resend** - Service d'envoi d'emails moderne et fiable
 
 ## 🎨 Design System
 
@@ -76,12 +77,32 @@ src/
    npm install
    ```
 
-3. **Démarrer le serveur de développement**
+3. **Configurer les variables d'environnement**
+   
+   Créez un fichier `.env.local` à la racine du projet :
+   ```env
+   RESEND_API_KEY=re_votre_cle_api_resend
+   CONTACT_EMAIL=ismail.iy.pro@gmail.com
+   ```
+   
+   **Pour obtenir votre clé API Resend :**
+   1. Créez un compte gratuit sur [https://resend.com](https://resend.com)
+   2. Allez dans "API Keys" dans le dashboard
+   3. Cliquez sur "Create API Key"
+   4. Donnez un nom à votre clé (ex: "MBN Transport Website")
+   5. Copiez la clé générée (commence par `re_`) et ajoutez-la dans `.env.local`
+   
+   **Note :** 
+   - Le plan gratuit de Resend permet 100 emails/jour et 3000 emails/mois
+   - Pour la production sur Vercel, ajoutez ces variables dans les paramètres du projet Vercel (Environment Variables)
+   - Vous pouvez vérifier votre domaine dans Resend pour utiliser votre propre adresse d'expéditeur
+
+4. **Démarrer le serveur de développement**
    ```bash
    npm run dev
    ```
 
-4. **Ouvrir dans le navigateur**
+5. **Ouvrir dans le navigateur**
    ```
    http://localhost:3000
    ```
@@ -187,10 +208,63 @@ export const translations = {
 ## 📞 Contact
 
 **MBN TRANSPORT**
-- **Téléphone** : 01 XX XX XX XX
-- **Email** : ismail.iy.pro@gmail.com.fr
+- **Téléphone** : 01 49 60 56 50
+- **Email** : ismail.iy.pro@gmail.com
 - **Adresse** : 12 Avenue Maurice Thorez, 94200 Ivry-sur-Seine
 - **Horaires** : Lundi - Vendredi, 08h00 - 19h00
+
+## 📧 Configuration de l'envoi d'emails
+
+Le site utilise **Resend** pour envoyer les emails de contact. Les formulaires de contact (page `/contact` et footer) envoient automatiquement les demandes à votre adresse email.
+
+### Configuration Resend
+
+1. **Créer un compte Resend** (gratuit) : [https://resend.com](https://resend.com)
+2. **Obtenir une clé API** :
+   - Connectez-vous à votre dashboard Resend
+   - Allez dans "API Keys"
+   - Cliquez sur "Create API Key"
+   - Donnez un nom à votre clé (ex: "MBN Transport Website")
+   - Copiez la clé générée (elle commence par `re_`)
+3. **Configurer `.env.local`** :
+   ```env
+   RESEND_API_KEY=re_votre_cle_api_ici
+   CONTACT_EMAIL=ismail.iy.pro@gmail.com
+   ```
+
+### Plan gratuit Resend
+
+Le plan gratuit de Resend inclut :
+- ✅ 100 emails par jour
+- ✅ 3000 emails par mois
+- ✅ API moderne et fiable
+- ✅ Support pour domaines personnalisés (optionnel)
+
+### Pour Vercel
+
+1. Allez dans les paramètres de votre projet Vercel
+2. Section "Environment Variables"
+3. Ajoutez les variables :
+   - `RESEND_API_KEY` : Votre clé API Resend
+   - `CONTACT_EMAIL` : L'adresse email qui recevra les demandes
+4. Redéployez l'application
+
+### Vérifier votre domaine (optionnel)
+
+Pour utiliser votre propre domaine comme expéditeur (ex: `contact@mbntransport.fr`) :
+1. Allez dans "Domains" dans le dashboard Resend
+2. Ajoutez votre domaine
+3. Suivez les instructions pour vérifier votre domaine (ajout de records DNS)
+4. Modifiez l'adresse `from` dans `src/app/api/contact/route.ts`
+
+### Test de l'envoi d'emails
+
+Une fois configuré, testez le formulaire de contact. Vous devriez recevoir un email avec les détails de la demande. L'email inclut :
+- Type de demande
+- Informations de l'entreprise
+- Coordonnées du contact (nom, prénom, email, téléphone)
+- Message complet
+- Possibilité de répondre directement au client (replyTo configuré)
 
 ## 📄 Licence
 

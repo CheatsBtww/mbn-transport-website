@@ -90,7 +90,7 @@ export const translations = {
     
     // Contact Info
     telephoneNumber: "01 49 60 56 50",
-    emailAddress: "ismail.iy.pro@gmail.com.fr",
+    emailAddress: "ismail.iy.pro@gmail.com",
     
     // Language
     language: "Langue",
@@ -189,7 +189,7 @@ export const translations = {
     
     // Contact Info
     telephoneNumber: "01 49 60 56 50",
-    emailAddress: "ismail.iy.pro@gmail.com.fr",
+    emailAddress: "ismail.iy.pro@gmail.com",
     
     // Language
     language: "Language",

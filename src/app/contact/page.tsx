@@ -21,6 +21,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -33,14 +34,31 @@ export default function ContactPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log('Form submitted:', data);
-    setIsSubmitted(true);
-    reset();
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Erreur lors de l\'envoi du message');
+      }
+
+      setIsSubmitted(true);
+      reset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue lors de l\'envoi du message');
+      console.error('Erreur lors de l\'envoi:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -221,8 +239,14 @@ export default function ContactPage() {
 
                 <div className="text-xs text-gray-500 mb-6">
                   * Champs obligatoires<br />
-                  La collecte des informations demandées est nécessaire au traitement de votre demande. Dans le cadre de la gestion de nos prospects et clients, nous conservons les données personnelles qui y sont relatives pour un maximum de 1 an après le dernier contact. Conformément aux dispositions légales en vigueur, vous disposez d'un droit d'accès, de rectification, de portabilité, de limitation, d'opposition et de suppression des données qui vous concernent. Pour les exercer, envoyez votre demande par e-mail à l'adresse suivante: ismail.iy.pro@gmail.com.fr
+                  La collecte des informations demandées est nécessaire au traitement de votre demande. Dans le cadre de la gestion de nos prospects et clients, nous conservons les données personnelles qui y sont relatives pour un maximum de 1 an après le dernier contact. Conformément aux dispositions légales en vigueur, vous disposez d'un droit d'accès, de rectification, de portabilité, de limitation, d'opposition et de suppression des données qui vous concernent. Pour les exercer, envoyez votre demande par e-mail à l'adresse suivante: ismail.iy.pro@gmail.com
                 </div>
+
+                {error && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
+                    <p className="text-sm">{error}</p>
+                  </div>
+                )}
 
                 <button
                   type="submit"
@@ -260,7 +284,7 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">E-mail</h3>
-                  <p className="text-gray-600">ismail.iy.pro@gmail.com.fr</p>
+                  <p className="text-gray-600">ismail.iy.pro@gmail.com</p>
                 </div>
                 
                 <div className="bg-white rounded-lg p-6 shadow-sm">
