@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #020617;
+  --foreground: #f8fafc;
 }
 
 @theme inline {
@@ -21,20 +21,20 @@ body {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
-  border-radius: 4px;
+  background: #3b82f6;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #60a5fa;
 }
 
 /* Smooth scrolling */
@@ -44,7 +44,7 @@ html {
 
 /* Focus styles */
 *:focus {
-  outline: 2px solid #0369a1;
+  outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
@@ -55,7 +55,7 @@ html {
 
 .btn-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
 }
 
 /* Card hover effects */
@@ -65,7 +65,7 @@ html {
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
 }
 
 /* Animation classes */
@@ -95,4 +95,13 @@ html {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* Blue glow effect for CTAs */
+.blue-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.blue-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
 }

@@ -1,126 +1,78 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Bell, MessageCircle } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 import UrgentBanner from './UrgentBanner';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useLanguage();
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: '/services', label: t('nosServices') },
+    { href: '/nos-moyens', label: t('nosMoyens') },
+    { href: '/notre-groupe', label: t('notreGroupe') },
+    { href: '/carriere', label: t('carriere') },
+  ];
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="sticky top-0 z-50">
       {/* Urgent Banner */}
       <UrgentBanner />
-      {/* Top utility bar */}
-      <div className="bg-gray-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-10">
-            <div className="flex items-center space-x-6">
-              <Link href="/conciergerie" className="flex items-center space-x-2 hover:text-gray-300 transition-colors">
-                <Bell className="h-4 w-4" />
-                <span className="text-sm font-medium">{t('conciergerie')}</span>
-              </Link>
-              <div className="h-4 w-px bg-white"></div>
-              <Link href="/contact" className="flex items-center space-x-2 hover:text-gray-300 transition-colors">
-                <MessageCircle className="h-4 w-4" />
-                <span className="text-sm font-medium">{t('contact')}</span>
-              </Link>
-            </div>
-            <LanguageSelector />
-          </div>
-        </div>
-      </div>
 
       {/* Main navigation */}
-      <div className="bg-white">
+      <div className={`bg-slate-900/95 backdrop-blur-md border-b transition-all duration-300 ${isScrolled ? 'border-slate-700/80 shadow-lg shadow-black/30' : 'border-slate-800'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-6">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
-                  <img
-                    src="/logo-mbn.png"
-                    alt="MBN TRANSPORT Logo"
-                    className="object-contain w-auto"
-                    style={{ height: '100px' }}
-                  />
+            <Link href="/" className="flex items-center flex-shrink-0">
+              <img
+                src="/logo-mbn.png"
+                alt="MBN TRANSPORT Logo"
+                className="object-contain w-auto"
+                style={{ height: '70px' }}
+              />
             </Link>
 
             {/* Desktop navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link 
-                href="/services" 
-                className="text-gray-900 font-bold transition-all duration-300 px-4 py-2 rounded-md hover:shadow-lg"
-                style={{ transition: 'all 0.3s ease' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#1f2937';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#111827';
-                }}
-              >
-                {t('nosServices')}
-              </Link>
-              <Link 
-                href="/nos-moyens" 
-                className="text-gray-900 font-bold transition-all duration-300 px-4 py-2 rounded-md hover:shadow-lg"
-                style={{ transition: 'all 0.3s ease' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#1f2937';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#111827';
-                }}
-              >
-                {t('nosMoyens')}
-              </Link>
-              <Link 
-                href="/notre-groupe" 
-                className="text-gray-900 font-bold transition-all duration-300 px-4 py-2 rounded-md hover:shadow-lg"
-                style={{ transition: 'all 0.3s ease' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#1f2937';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#111827';
-                }}
-              >
-                {t('notreGroupe')}
-              </Link>
-              <Link 
-                href="/carriere" 
-                className="text-gray-900 font-bold transition-all duration-300 px-4 py-2 rounded-md hover:shadow-lg"
-                style={{ transition: 'all 0.3s ease' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#1f2937';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#111827';
-                }}
-              >
-                {t('carriere')}
-              </Link>
+            <nav className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="relative text-slate-300 hover:text-white font-medium px-4 py-2 rounded-lg hover:bg-slate-800 transition-all duration-200 text-sm group"
+                >
+                  {link.label}
+                  <span className="absolute bottom-1 left-4 right-4 h-px bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                </Link>
+              ))}
             </nav>
+
+            {/* Right side: language + CTA */}
+            <div className="hidden md:flex items-center gap-4">
+              <LanguageSelector />
+              <Link
+                href="/contact"
+                className="bg-blue-500 hover:bg-blue-400 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 text-sm shadow-lg shadow-blue-500/20 hover:shadow-blue-400/30"
+              >
+                {t('contact')}
+              </Link>
+            </div>
 
             {/* Mobile menu button */}
             <button
-              onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-md text-gray-900 hover:text-primary-700 hover:bg-gray-100 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -129,36 +81,28 @@ export default function Header() {
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link
-                href="/services"
-                className="block px-3 py-2 text-gray-900 hover:text-primary-700 hover:bg-primary-50 rounded-md font-medium transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('nosServices')}
-              </Link>
-              <Link
-                href="/nos-moyens"
-                className="block px-3 py-2 text-gray-900 hover:text-primary-700 hover:bg-primary-50 rounded-md font-medium transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('nosMoyens')}
-              </Link>
-              <Link
-                href="/notre-groupe"
-                className="block px-3 py-2 text-gray-900 hover:text-primary-700 hover:bg-primary-50 rounded-md font-medium transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('notreGroupe')}
-              </Link>
-              <Link
-                href="/carriere"
-                className="block px-3 py-2 text-gray-900 hover:text-primary-700 hover:bg-primary-50 rounded-md font-medium transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('carriere')}
-              </Link>
+          <div className="md:hidden bg-slate-900 border-t border-slate-800">
+            <div className="px-4 py-4 space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
+                <LanguageSelector />
+                <Link
+                  href="/contact"
+                  className="bg-blue-500 hover:bg-blue-400 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t('contact')}
+                </Link>
+              </div>
             </div>
           </div>
         )}

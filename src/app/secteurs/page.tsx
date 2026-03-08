@@ -3,80 +3,49 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 const sectors = [
-  {
-    id: 'secteur-public',
-    title: 'Secteur Public',
-    description: 'Solutions logistiques pour les administrations et collectivités.',
-    link: '/secteurs/secteur-public'
-  },
-  {
-    id: 'sante',
-    title: 'Santé',
-    description: 'Transport spécialisé pour établissements médicaux et produits de santé.',
-    link: '/secteurs/sante'
-  },
-  {
-    id: 'mode-luxe',
-    title: 'Mode et Luxe',
-    description: 'Logistique haut de gamme pour l\'industrie textile et du luxe.',
-    link: '/secteurs/mode-et-luxe'
-  },
-  {
-    id: 'industrie',
-    title: 'Industrie',
-    description: 'Solutions de transport pour la fabrication et la production industrielle.',
-    link: '/secteurs/industrie'
-  },
-  {
-    id: 'service-high-tech',
-    title: 'Service & High Tech',
-    description: 'Transport spécialisé pour matériels informatiques et technologies.',
-    link: '/secteurs/service-high-tech'
-  },
-  {
-    id: 'gourmet-retail',
-    title: 'Gourmet & Retail',
-    description: 'Logistique alimentaire et distribution retail.',
-    link: '/secteurs/gourmet-retail'
-  },
-  {
-    id: 'btp',
-    title: 'BTP',
-    description: 'Transport de matériaux et équipements pour le bâtiment.',
-    link: '/secteurs/btp'
-  }
+  { id: 'secteur-public', title: 'Secteur Public', description: 'Solutions logistiques pour les administrations et collectivités.', link: '/secteurs/secteur-public' },
+  { id: 'sante', title: 'Santé', description: 'Transport spécialisé pour établissements médicaux et produits de santé.', link: '/secteurs/sante' },
+  { id: 'mode-luxe', title: 'Mode et Luxe', description: 'Logistique haut de gamme pour l\'industrie textile et du luxe.', link: '/secteurs/mode-et-luxe' },
+  { id: 'industrie', title: 'Industrie', description: 'Solutions de transport pour la fabrication et la production industrielle.', link: '/secteurs/industrie' },
+  { id: 'service-high-tech', title: 'Service & High Tech', description: 'Transport spécialisé pour matériels informatiques et technologies.', link: '/secteurs/service-high-tech' },
+  { id: 'gourmet-retail', title: 'Gourmet & Retail', description: 'Logistique alimentaire et distribution retail.', link: '/secteurs/gourmet-retail' },
+  { id: 'btp', title: 'BTP', description: 'Transport de matériaux et équipements pour le bâtiment.', link: '/secteurs/btp' }
+];
+
+const caseStudies = [
+  { title: 'Secteur Public', desc: 'Plan de transport spécifique pour la gestion des risques d\'inondation en région parisienne.', link: '/secteurs/secteur-public' },
+  { title: 'High Tech', desc: 'Déploiement de solutions matérielles bureautiques dans 87 établissements publics.', link: '/secteurs/service-high-tech' },
 ];
 
 export default function SecteursPage() {
   return (
     <Layout>
-      <div className="bg-white">
-        {/* Hero Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Secteurs d'activité</h1>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Une expertise métier pour chacun de vos secteurs d'activités.
-              </p>
-            </div>
+      <div className="bg-slate-950">
+        {/* Hero */}
+        <section className="py-20 bg-slate-900 border-b border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Expertise sectorielle</p>
+            <h1 className="text-5xl font-extrabold text-white mb-4">Secteurs d&apos;activité</h1>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              Une expertise métier pour chacun de vos secteurs d&apos;activités.
+            </p>
           </div>
         </section>
 
-        {/* Sectors Grid */}
-        <section className="py-16">
+        {/* Sectors grid */}
+        <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {sectors.map((sector) => (
-                <div key={sector.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 card-hover">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{sector.title}</h3>
-                  <p className="text-gray-600 mb-4">{sector.description}</p>
-                  <Link 
+                <div key={sector.id} className="bg-slate-900 border border-slate-700/50 rounded-2xl p-6 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 card-hover group">
+                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">{sector.title}</h3>
+                  <p className="text-slate-400 text-sm mb-5 leading-relaxed">{sector.description}</p>
+                  <Link
                     href={sector.link}
-                    className="inline-flex items-center text-primary-700 hover:text-brand-orange font-medium transition-colors"
+                    className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors group-hover:gap-2.5"
                   >
                     Découvrir nos solutions
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               ))}
@@ -84,62 +53,46 @@ export default function SecteursPage() {
           </div>
         </section>
 
-        {/* Case Studies Preview */}
-        <section className="py-16 bg-gray-50">
+        {/* Case studies */}
+        <section className="py-20 bg-slate-900 border-y border-slate-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Nos références par secteur
-              </h2>
-              <p className="text-lg text-gray-600">
-                Découvrez comment nous accompagnons nos clients dans chaque secteur d'activité.
-              </p>
+            <div className="text-center mb-14">
+              <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Études de cas</p>
+              <h2 className="text-4xl font-bold text-white mb-3">Nos références par secteur</h2>
+              <p className="text-slate-400">Découvrez comment nous accompagnons nos clients dans chaque secteur d&apos;activité.</p>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-lg p-8 shadow-sm">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Secteur Public</h3>
-                <p className="text-gray-600 mb-4">
-                  Plan de transport spécifique pour la gestion des risques d'inondation en région parisienne.
-                </p>
-                <Link 
-                  href="/secteurs/secteur-public"
-                  className="text-primary-700 hover:text-brand-orange font-medium"
-                >
-                  Voir l'étude de cas →
-                </Link>
-              </div>
-              
-              <div className="bg-white rounded-lg p-8 shadow-sm">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">High Tech</h3>
-                <p className="text-gray-600 mb-4">
-                  Déploiement de solutions matérielles bureautiques dans 87 établissements publics.
-                </p>
-                <Link 
-                  href="/secteurs/service-high-tech"
-                  className="text-primary-700 hover:text-brand-orange font-medium"
-                >
-                  Voir l'étude de cas →
-                </Link>
-              </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {caseStudies.map((cs, i) => (
+                <div key={i} className="bg-slate-800 border border-slate-700 rounded-2xl p-8">
+                  <h3 className="text-xl font-semibold text-white mb-3">{cs.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-5">{cs.desc}</p>
+                  <Link
+                    href={cs.link}
+                    className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors"
+                  >
+                    Voir l&apos;étude de cas
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-br from-primary-700 to-primary-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Votre secteur n'est pas listé ?
-            </h2>
-            <p className="text-xl text-primary-100 mb-8">
-              Contactez-nous pour découvrir nos solutions adaptées à votre secteur d'activité.
+        {/* CTA */}
+        <section className="py-20">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">Votre secteur n&apos;est pas listé ?</h2>
+            <p className="text-lg text-slate-400 mb-8">
+              Contactez-nous pour découvrir nos solutions adaptées à votre secteur d&apos;activité.
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-primary-700 px-8 py-3 rounded-md font-medium hover:bg-brand-orange hover:text-white transition-all shadow-lg"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/30"
             >
               Nous contacter
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </section>
@@ -147,4 +100,3 @@ export default function SecteursPage() {
     </Layout>
   );
 }
-
