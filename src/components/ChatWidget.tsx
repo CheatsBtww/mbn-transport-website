@@ -21,7 +21,7 @@ export default function ChatWidget() {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-gray-800 text-white p-4 rounded-full shadow-lg hover:bg-gray-700 transition-all btn-hover"
+          className="bg-blue-500 hover:bg-blue-400 text-white p-4 rounded-full shadow-xl shadow-blue-500/30 hover:shadow-blue-400/40 transition-all duration-200 blue-glow btn-hover"
           aria-label={isOpen ? "Fermer le chat" : "Ouvrir le chat"}
         >
           {isOpen ? (
@@ -29,9 +29,9 @@ export default function ChatWidget() {
           ) : (
             <div className="relative">
               <MessageCircle className="h-6 w-6" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full flex items-center justify-center">
-                <div className="w-2 h-2 bg-gray-800 rounded-full animate-pulse"></div>
-              </div>
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full">
+                <span className="absolute inset-0 rounded-full bg-blue-300 animate-ping"></span>
+              </span>
             </div>
           )}
         </button>
@@ -39,60 +39,69 @@ export default function ChatWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 bg-white rounded-lg shadow-2xl border border-gray-300">
-          <div className="bg-gray-800 text-white p-4 rounded-t-lg">
-            <h3 className="font-semibold text-lg">Besoin d'aide ?</h3>
-            <p className="text-sm text-gray-300">Notre équipe est là pour vous</p>
+        <div className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 bg-slate-900 rounded-2xl shadow-2xl border border-slate-700">
+          <div className="bg-slate-800 border-b border-slate-700 p-4 rounded-t-2xl">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-blue-500/20 border border-blue-500/30 rounded-lg flex items-center justify-center">
+                <MessageCircle className="h-4 w-4 text-blue-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white text-sm">Besoin d&apos;aide ?</h3>
+                <p className="text-xs text-slate-400">Notre équipe est là pour vous</p>
+              </div>
+            </div>
           </div>
-          
+
           <div className="p-4">
-            <div className="space-y-3 mb-4">
-              <div className="bg-gray-100 rounded-lg p-3 border-l-4 border-gray-800">
-                <p className="text-sm text-gray-700">
-                  Bonjour ! Comment pouvons-nous vous aider aujourd'hui ?
+            <div className="mb-4">
+              <div className="bg-slate-800 border border-slate-700 rounded-xl p-3">
+                <p className="text-sm text-slate-300">
+                  Bonjour ! Comment pouvons-nous vous aider aujourd&apos;hui ?
                 </p>
               </div>
             </div>
-            
+
             <div className="space-y-2">
-              <Link 
+              <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 hover:border-gray-400 border border-transparent transition-all text-sm flex items-center gap-3"
+                className="w-full text-left p-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-blue-500/50 rounded-xl transition-all text-sm flex items-center gap-3 group"
               >
-                <div className="flex-shrink-0 w-10 h-10 bg-primary-700 rounded-full flex items-center justify-center">
-                  <MessageSquare className="h-5 w-5 text-white" />
+                <div className="flex-shrink-0 w-10 h-10 bg-blue-500/10 border border-blue-500/20 group-hover:bg-blue-500/20 rounded-xl flex items-center justify-center transition-colors">
+                  <MessageSquare className="h-5 w-5 text-blue-400" />
                 </div>
-                <span className="font-medium">Demander un devis</span>
+                <span className="font-medium text-slate-200 group-hover:text-white transition-colors">Demander un devis</span>
               </Link>
-              <button 
+
+              <button
                 onClick={handleCallClick}
-                className="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 hover:border-gray-400 border border-transparent transition-all text-sm flex items-center gap-3"
+                className="w-full text-left p-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-blue-500/50 rounded-xl transition-all text-sm flex items-center gap-3 group"
               >
-                <div className="flex-shrink-0 w-10 h-10 bg-primary-700 rounded-full flex items-center justify-center">
-                  <Phone className="h-5 w-5 text-white" />
+                <div className="flex-shrink-0 w-10 h-10 bg-blue-500/10 border border-blue-500/20 group-hover:bg-blue-500/20 rounded-xl flex items-center justify-center transition-colors">
+                  <Phone className="h-5 w-5 text-blue-400" />
                 </div>
                 <div>
-                  <div className="font-medium">Nous appeler</div>
-                  <div className="text-xs text-gray-500">01 49 60 56 50</div>
+                  <div className="font-medium text-slate-200 group-hover:text-white transition-colors">Nous appeler</div>
+                  <div className="text-xs text-slate-500">01 49 60 56 50</div>
                 </div>
               </button>
-              <button 
+
+              <button
                 onClick={handleEmailClick}
-                className="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 hover:border-gray-400 border border-transparent transition-all text-sm flex items-center gap-3"
+                className="w-full text-left p-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-blue-500/50 rounded-xl transition-all text-sm flex items-center gap-3 group"
               >
-                <div className="flex-shrink-0 w-10 h-10 bg-primary-700 rounded-full flex items-center justify-center">
-                  <Mail className="h-5 w-5 text-white" />
+                <div className="flex-shrink-0 w-10 h-10 bg-blue-500/10 border border-blue-500/20 group-hover:bg-blue-500/20 rounded-xl flex items-center justify-center transition-colors">
+                  <Mail className="h-5 w-5 text-blue-400" />
                 </div>
                 <div>
-                  <div className="font-medium">Envoyer un email</div>
-                  <div className="text-xs text-gray-500">ismail.iy.pro@gmail.com</div>
+                  <div className="font-medium text-slate-200 group-hover:text-white transition-colors">Envoyer un email</div>
+                  <div className="text-xs text-slate-500">ismail.iy.pro@gmail.com</div>
                 </div>
               </button>
             </div>
-            
-            <div className="mt-4 pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-500 text-center flex items-center justify-center gap-1">
+
+            <div className="mt-4 pt-4 border-t border-slate-700">
+              <p className="text-xs text-slate-500 text-center flex items-center justify-center gap-1">
                 <Clock className="h-3 w-3" />
                 <span>Réponse moyenne : 2 minutes</span>
               </p>
@@ -103,4 +112,3 @@ export default function ChatWidget() {
     </>
   );
 }
-
